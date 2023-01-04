@@ -79,7 +79,7 @@
 		<rect x="50" y="0" width="'.($breite).'" height="'.($hoehe + 20).'" rx="3" ry="3" fill="#F0F0F0" />
 	';
 
-	for ($i=1000;$i<10000;$i+=1000) {
+	for ($i=1000; $i<10000; $i+=1000) {
 		echo '<line x1="0" y1="'.($hoehe + 20 - $i * $faktor).'" x2="'.($breite + 50).'" y2="'.($hoehe + 20 - $i * $faktor).'" stroke-width="1" stroke="#FFFFFF" />';
 	}
 
