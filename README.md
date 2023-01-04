@@ -10,4 +10,4 @@ Needed: Tibber API key, get your own here: https://developer.tibber.com/
 
 Works with active accounts (or demo key) only!
 
-You can check the scripts at https://hopp.la/tibber/tib.php
+You can check working scripts at https://hopp.la/tibber/tib.php
