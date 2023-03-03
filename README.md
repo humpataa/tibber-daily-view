@@ -12,6 +12,9 @@ Works with active accounts (or demo key) only!
 
 You can check working scripts at https://hopp.la/tibber/tib.php
 
+
+Check out Tibber Developer group at Facebook: https://www.facebook.com/groups/736229228027864
+
 If you want to be part of Tibber, use this link to get €50 credits (I will get them too): https://invite.tibber.com/3vilpyhv
 
 Wenn Du Kunde von Tibber werden möchtest, benutze folgenden Link, um 50 Euro Guthaben zu erhalten (bekommen wir beide): https://invite.tibber.com/3vilpyhv
