@@ -10,8 +10,10 @@ Needed: Tibber API key, get your own here: https://developer.tibber.com/
 
 Works with active accounts (or demo key) only!
 
-You can check working scripts at https://hopp.la/tibber/tib.php
-
+Last update:
+- added live data!
+- seperate request for today's prices
+- now shows full day data
 
 If you want to be part of Tibber, use this link to get €50 credits (I will get them too): https://invite.tibber.com/3vilpyhv
 
