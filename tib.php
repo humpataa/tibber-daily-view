@@ -92,6 +92,7 @@
 	echo '<form>API-Key: <input type="text" name="apikey" value=""><input type="submit"> (Demo API Key: 5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE)</form>';
 	echo '
 		<div id="display" style="background-color: #e9e9e9"></div>
+		</br><a href="?day='.($day-1).'&apikey='.$apikey.'">zurück</a> '.$datetime->format('l, d.m.Y').'
 	';
 
 	$today = new DateTime();
