@@ -40,15 +40,12 @@
 
 	date_default_timezone_set('CET');
 	$datetime = new DateTime();
-	$datetime->modify('+1 day');
 	$datetime->setTime(0, 0, 0);
 	$day = 0;
 	if (isset($_GET["day"]) && is_numeric($_GET["day"])) $day = $_GET["day"];
 
 	$datetime->modify(($day<0?'':'+').$day.' day');
 	$cursor = base64_encode($datetime->format('c'));
-
-	$datetime->modify('-1 day');
 
 // request today's prices
 	$json = '{"query":"{viewer {homes {currentSubscription {priceInfo {today {total}}}}}}"}';
@@ -70,7 +67,7 @@
 	$priceInfo = $data["data"]["viewer"]["homes"][0]["currentSubscription"]["priceInfo"]["today"];
 
 	// request today's consumption
-	$json = '{"query":"{viewer {homes {timeZone id address {postalCode city}consumption(resolution: HOURLY last: 24 before: \"'.$cursor.'\") {nodes {from to cost unitPrice unitPriceVAT consumption consumptionUnit}}}}}"}';
+	$json = '{"query":"{viewer {homes {timeZone id address {postalCode city}consumption(resolution: HOURLY first: 24 after: \"'.$cursor.'\") {nodes {from to cost unitPrice unitPriceVAT consumption consumptionUnit}}}}}"}';
 	
 	# Create a connection
 	$ch = curl_init('https://api.tibber.com/v1-beta/gql');
