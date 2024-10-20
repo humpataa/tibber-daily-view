@@ -3,7 +3,6 @@
 
 	date_default_timezone_set('CET');
 	$datetime = new DateTime();
-	$datetime->modify('+1 day');
 	$datetime->setTime(0, 0, 0);
 	$day = 0;
 	if (isset($_GET["day"]) && is_numeric($_GET["day"])) $day = $_GET["day"];
@@ -11,7 +10,7 @@
 	$datetime->modify(($day<0?'':'+').$day.' day');
 	$cursor = base64_encode($datetime->format('c'));
 
-	$json = '{"query":"{viewer {homes {timeZone address {postalCode city}consumption(resolution: HOURLY last: 24 before: \"'.$cursor.'\") {nodes {from to cost unitPrice unitPriceVAT consumption consumptionUnit}}}}}"}';
+	$json = '{"query":"{viewer {homes {timeZone address {postalCode city}consumption(resolution: HOURLY first: 24 after: \"'.$cursor.'\") {nodes {from to cost unitPrice unitPriceVAT consumption consumptionUnit}}}}}"}';
 
 	$ch = curl_init('https://api.tibber.com/v1-beta/gql');
 	curl_setopt($ch, CURLOPT_URL, 'https://api.tibber.com/v1-beta/gql');
