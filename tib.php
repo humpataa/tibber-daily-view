@@ -156,45 +156,39 @@
 		}
 	
 		foreach($nodes as $key => $node) {
-	
+		
 			$cost = $node["cost"];
 			$consumption = $node["consumption"];
 			$unitPrice = $node["unitPrice"];
 	
 			// Consumption
 			echo '<rect x="'.($key * $stepbreite + 50).'" y="'.($hoehe + 20 - $consumption * $faktorconsumption).'" width="'.($stepbreite - 5).'" height="'.($consumption * $faktorconsumption).'" fill-opacity="0.3" fill="#00FF00" />';
-
-			echo '<text x="5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="start" transform="translate('.($key * $stepbreite + 55).','.($hoehe + 20).') rotate(-90)">'.($consumption).' kWh </text>';
-
-	/*
-			if (isset($okey)) {
-				// Cost Kurve
-				echo '<line x1="'.($okey * $stepbreite + $stepbreite / 2 + 50).'" y1="'.($hoehe + 20 - $ocost * $faktorcost).'" x2="'.($key * $stepbreite + $stepbreite / 2 + 50).'" y2="'.($hoehe + 20 - $cost * $faktorcost).'" stroke-width="2" stroke="#AAAAAA" />';
-			}
-	*/
-
-			//echo '<text x="5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="start" transform="translate('.($key * $stepbreite + 55).','.($hoehe + 20 - $cost * $faktorcost).') rotate(-90)">'.(ceil($cost*100)/100).' € </text>';
-
-			echo '<text x="5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="start" transform="translate('.($key * $stepbreite + 55).', 60) rotate(-90)">'.(ceil($cost*100)/100).' € </text>';
-
+	
+			echo '<text x="5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="start" transform="translate('.($key * $stepbreite + 55).','.($hoehe + 20).') rotate(-90)">'.number_format(($consumption),3).' kWh </text>';
+			echo '<text x="5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="start" transform="translate('.($key * $stepbreite + 55).', 60) rotate(-90)">'.number_format((ceil($cost*100)/100),2).' € </text>';
+				
 			if (isset($ounitPrice)) {
-				// unitPrice
-				echo '<line x1="'.($okey * $stepbreite + $stepbreite / 2 + 50).'" y1="'.($hoehe + 20 - $ounitPrice * $faktorunitPrice).'" x2="'.($key * $stepbreite + $stepbreite / 2 + 50).'" y2="'.($hoehe + 20 - $unitPrice * $faktorunitPrice).'" stroke-width="2" stroke="#AA6600" />';
-				// unsichtbare Balken für die Tooltips
-				echo '<rect x="'.($key * $stepbreite + 50).'" y="'.($hoehe + 10 - $unitPrice * $faktorunitPrice).'" width="'.($stepbreite).'" height="20" fill-opacity="0.0" fill="#FFFFFF" onmousemove="showTooltip(evt,\''.(ceil($unitPrice*10000)/100).' ct\');" onmouseout="hideTooltip();" />';
+				echo '<line x1="'.($okey * $stepbreite + $stepbreite + 50).'" y1="'.($hoehe + 20 - $ounitPrice * $faktorunitPrice).'" x2="'.($okey * $stepbreite + $stepbreite + 50).'" y2="'.($hoehe + 20 - $unitPrice * $faktorunitPrice).'" stroke-width="2" stroke="#AA6600" />';
 			}
-
+	
+			echo '<line x1="'.($key * $stepbreite + 50).'" y1="'.($hoehe + 20 - $unitPrice * $faktorunitPrice).'" x2="'.($key * $stepbreite + $stepbreite + 50).'" y2="'.($hoehe + 20 - $unitPrice * $faktorunitPrice).'" stroke-width="2" stroke="#AA6600" />';
+			
+			// unsichtbare Balken für die Tooltips
+			echo '<rect x="'.($key * $stepbreite + 50).'" y="'.($hoehe + 20 - $unitPrice * $faktorunitPrice).'" width="'.($stepbreite).'" height="20" fill-opacity="0.0" fill="#FFFFFF" onmousemove="showTooltip(evt,\''.(ceil($unitPrice*10000)/100).' ct\');" onmouseout="hideTooltip();" />';
+	
 			$okey = $key;
 			$ocost = $cost;
 			$ounitPrice = $unitPrice;
-
+	
 			// Stunde
 			echo '<text x="-5" y="'.($stepbreite / 2).'" font-size="small+1" text-anchor="end" transform="translate('.($key * $stepbreite + 55).','.($hoehe + 20).') rotate(-90)" fill="#00AA00">'.$key.'</text>';
-
+	
 			$sum_consumption += $consumption;
 			//$sum_cost += ceil($cost*100)/100;
 			$sum_cost += $cost;
 			$sum_unitPrice += $unitPrice;
+			
+			$unitprices[$key] = $unitPrice;
 		}
 
 		echo "</svg></br>";
