@@ -109,6 +109,7 @@
 	';
 
 	foreach($priceInfo as $key=>$price) {
+		if ($key > 23) break;	// fix for tibber issue returning 25 values
 		if (isset($consumptionData["nodes"][$key])) $nodes[$key] = $consumptionData["nodes"][$key];
 		if (!isset($nodes[$key]["unitPrice"])) $nodes[$key]["unitPrice"] = $price["total"];
 	}
